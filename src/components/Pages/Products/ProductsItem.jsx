@@ -1,27 +1,27 @@
-import ItemCount from "../../Global/ItemCount";
+import { useNavigate } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 function ProductItem({ product }) {
+  const navigate = useNavigate();
+
+  function handleNavigation(path) {
+    navigate(path);
+  }
+
   return (
-    <div className="flex justify-between w-[50rem] border p-8">
-      <div className="flex flex-col justify-between">
-        <span className="text-blue-950 text-3xl font-semibold">
+    <div className="flex flex-col gap-2">
+      <div
+        className="w-[210px] h-[300px] bg-gray-200 cursor-pointer"
+        onClick={() => handleNavigation("/products/" + product.id)}
+      />
+      <div className="flex flex-col">
+        <span className="text-gray-950 text-xl font-semibold hover:underline cursor-pointer font-inter">
           {product.name}
         </span>
-        <span className="text-blue-500 font-semibold text-3xl">
+        <span className="text-blue-500 text-xl hover:underline cursor-pointer font-inter">
           R$ {product.price}
         </span>
-      </div>
-      <div className="flex flex-col gap-2 items-center">
-        <div className="flex gap-2 items-center">
-          <ItemCount stock={product.stock} />
-          <span>
-            {product.stock.toString().padStart(2, " ")} items disponíveis
-          </span>
-        </div>
-        <button className="border p-2 w-full border-blue-600 text-blue-600">
-          Adicionar ao carrinho
-        </button>
+        <span>{product.size}</span>
       </div>
     </div>
   );
