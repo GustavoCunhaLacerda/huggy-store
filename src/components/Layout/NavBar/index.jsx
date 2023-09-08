@@ -2,12 +2,8 @@ import { Link } from "react-router-dom";
 
 function NavBar() {
   const navOptions = [
-    // { label: "Home", path: "/" },
     { label: "Ursos", path: "/products" },
-    // { label: "Pequenos", path: "/products/category/small" },
-    // { label: "Médios", path: "/products/category/medium" },
-    // { label: "Grandes", path: "/products/category/large" },
-    { label: "Carrinho", path: "/products/large", icon: "cart" },
+    { label: "Carrinho", path: "/cart", icon: "cart" },
     { label: "Perfil", path: "/profile", icon: "person" },
   ];
 

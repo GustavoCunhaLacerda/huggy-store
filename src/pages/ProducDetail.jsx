@@ -1,12 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Default from "../components/Layout/Default";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../api";
 import ItemCount from "../components/Global/ItemCount";
+import CartContext from "../context/cartContext";
 
 function ProductDetail() {
+  const cartContext = useContext(CartContext);
   const params = useParams();
+  const navigate = useNavigate();
+
   const [product, setProduct] = useState(null);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     async function fetch() {
@@ -15,6 +20,11 @@ function ProductDetail() {
     }
     fetch();
   }, [params.id]);
+
+  function addToCart() {
+    cartContext.addItem(product, count);
+    navigate("/cart");
+  }
 
   return (
     <Default>
@@ -44,13 +54,21 @@ function ProductDetail() {
             </div>
             <div className="flex flex-col gap-2">
               <div className="flex gap-2 items-center">
-                <ItemCount stock={product.stockCount} />
+                <ItemCount
+                  count={count}
+                  setCount={setCount}
+                  limit={product.stockCount}
+                />
                 <span>
                   {product.stockCount.toString().padStart(2, " ")} items
                   disponíveis
                 </span>
               </div>
-              <button className="border p-2 w-full border-blue-600 text-blue-600 hover:bg-blue-100">
+              <button
+                className="border p-2 w-full border-blue-600 text-blue-600 hover:bg-blue-100"
+                onClick={addToCart}
+                disabled={count < 1}
+              >
                 Adicionar ao carrinho
               </button>
             </div>

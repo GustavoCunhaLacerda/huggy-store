@@ -12,7 +12,6 @@ function ProductList() {
     async function fetch() {
       const res = await api.product.list();
 
-      console.log(params.size);
       if (params.size) {
         setProductList(
           res.filter((product) => {

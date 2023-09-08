@@ -1,22 +1,19 @@
-import { useState } from "react";
-
-function ItemCount({ stock }) {
-  const [count, setCount] = useState(0);
-
+// eslint-disable-next-line react/prop-types
+function ItemCount({ count, setCount, limit }) {
   function increment() {
-    if (stock === 0) {
+    if (limit === 0) {
       return 0;
     }
 
-    if (stock) {
-      setCount((curr) => Math.min(stock, curr + 1));
+    if (limit) {
+      setCount((curr) => Math.min(limit, curr + 1));
     } else {
       setCount((curr) => curr + 1);
     }
   }
 
   function decrement() {
-    if (stock === 0) {
+    if (limit === 0) {
       return 0;
     }
 
