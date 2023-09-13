@@ -1,9 +1,18 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import CartContext from "../../../context/cartContext";
 
 function NavBar() {
+  const cartContext = useContext(CartContext);
+
   const navOptions = [
     { label: "Ursos", path: "/products" },
-    { label: "Carrinho", path: "/cart", icon: "cart" },
+    {
+      label: "Carrinho",
+      path: "/cart",
+      icon: "cart",
+      count: cartContext.cartItems.length,
+    },
     { label: "Perfil", path: "/profile", icon: "person" },
   ];
 
@@ -22,7 +31,21 @@ function NavBar() {
         {navOptions.map((option, index) => {
           return (
             <Link to={option.path} key={index} className="font-inter">
-              {option.icon ? (
+              {option.count ? (
+                <div className="flex flex-col items-end justify-end">
+                  <div className="bg-red-600 rounded-full w-4 h-4 z-10 justify-center items-end flex -mb-3">
+                    <span className="text-xs font-medium text-white">
+                      {option.count}
+                    </span>
+                  </div>
+                  <img
+                    src={`/icons/${option.icon}.svg`}
+                    height={32}
+                    width={32}
+                    className="z-0"
+                  />
+                </div>
+              ) : option.icon ? (
                 <img src={`/icons/${option.icon}.svg`} height={32} width={32} />
               ) : (
                 <span
