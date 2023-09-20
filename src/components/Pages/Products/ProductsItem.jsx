@@ -8,19 +8,15 @@ function ProductItem({ product }) {
     navigate(path);
   }
 
-  function createTeddyId(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 p-5 border border-gray-200/80 rounded-xl shadow-md cursor-pointer hover:underline">
       <img
-        src={`/teddies/teddy-${createTeddyId(1, 4)}.png`}
-        className="w-[300px] h-[300px] bg-gray-200 cursor-pointer"
+        src={product.image}
+        className="w-[300px] h-[300px] bg-white cursor-pointer object-contain rounded-xl"
       />
       <div className="flex flex-col items-center justify-center">
         <span
-          className="text-gray-950 text-xl font-semibold hover:underline cursor-pointer font-inter"
+          className="text-gray-950 text-xl font-semibold  font-inter align-middle text-center"
           onClick={() => handleNavigation("/products/" + product.id)}
         >
           {product.name}

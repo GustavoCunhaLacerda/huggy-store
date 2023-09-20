@@ -19,13 +19,8 @@ function NavBar() {
   return (
     <aside className="flex w-full p-6 justify-between bg-gray-50 border-b">
       <Link to="/" className="flex gap-2 items-center">
-        <img src="/public/icons/teddy-bear.svg" className="w-10 h-10" />
-        <span
-          className="font-inter font-normal text-2xl"
-          style={{ color: "#546de5" }}
-        >
-          HUGGY
-        </span>
+        <img src="/icons/teddy-bear.svg" className="w-10 h-10" />
+        <span className="font-inter font-normal text-2xl">HUGGY</span>
       </Link>
       <nav className="flex gap-4 items-center">
         {navOptions.map((option, index) => {
@@ -48,12 +43,7 @@ function NavBar() {
               ) : option.icon ? (
                 <img src={`/icons/${option.icon}.svg`} height={32} width={32} />
               ) : (
-                <span
-                  style={{ color: "#e66767" }}
-                  className="font-semibold text-base"
-                >
-                  {option.label}
-                </span>
+                <span className="font-semibold text-base">{option.label}</span>
               )}
             </Link>
           );

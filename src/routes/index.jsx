@@ -4,8 +4,13 @@ import Home from "../pages/Home";
 import Cart from "../pages/Cart";
 import Products from "../pages/Products";
 import ProductDetail from "../pages/ProducDetail";
+import Admin from "../pages/Admin";
 
 const router = createBrowserRouter([
+  {
+    path: "/admin",
+    element: <Admin />,
+  },
   {
     path: "/products",
     element: <Products />,

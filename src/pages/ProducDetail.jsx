@@ -15,6 +15,7 @@ function ProductDetail() {
 
   useEffect(() => {
     async function fetch() {
+      console.log(params.id);
       const res = await api.product.index(params.id);
       setProduct(res);
     }
@@ -29,54 +30,45 @@ function ProductDetail() {
   return (
     <Default>
       {product ? (
-        <div className="flex flex-col md:flex-row h-full w-full items-center justify-center gap-10">
-          <div className="bg-slate-200 w-[300px] h-[440px]"></div>
-          <div className="flex flex-col gap-6">
-            <span className="text-blue-950 text-3xl font-semibold">
-              {product.name}
-            </span>
-            <span className="text-blue-500 font-semibold text-3xl">
-              R$ {product.price}
-            </span>
-            <div className="flex flex-col gap-1">
-              <span className="text-gray-500 text-sm">
-                Marca: {product.brand}
-              </span>
-              <span className="text-gray-500 text-sm">
-                Material: {product.material}
-              </span>
-              <span className="text-gray-500 text-sm">
-                Cor: {product.color}
-              </span>
-              <span className="text-gray-500 text-sm">
-                Tamanho: {product.size}
-              </span>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="flex gap-2 items-center">
+        <div className="h-full w-full flex items-center justify-center">
+          <div className="flex gap-12 items-center">
+            {/* IMG */}
+            <img
+              className="h-72 w-72 bg-white rounded-xl object-contain"
+              src={product.image}
+            />
+            <div className="flex flex-col gap-4">
+              <h2 className="text-xl font-inter text-blue-600 font-semibold">
+                {product.brand}
+              </h2>
+              <h1 className="text-5xl font-inter text-gray-900 font-bold">
+                {product.name}
+              </h1>
+              <h2 className="text-2xl font-inter text-gray-900 font-semibold">
+                R$ {product.price}
+              </h2>
+              <div className="flex gap-4 items-center">
                 <ItemCount
                   count={count}
                   setCount={setCount}
                   limit={product.stockCount}
                 />
-                <span>
-                  {product.stockCount.toString().padStart(2, " ")} items
-                  disponíveis
-                </span>
+                <button
+                  className="bg-blue-500 items-center justify-center flex h-11 w-full rounded-xl hover:bg-blue-500/50"
+                  onClick={addToCart}
+                >
+                  <span className="text-white text-sm font-semibold">
+                    Adicionar no Carrinho
+                  </span>
+                </button>
               </div>
-              <button
-                className="border p-2 w-full border-blue-600 text-blue-600 hover:bg-blue-100"
-                onClick={addToCart}
-                disabled={count < 1}
-              >
-                Adicionar ao carrinho
-              </button>
+              <h3 className="text-xs font-inter text-gray-900 font-normal -mt-2">
+                {product.stockCount} produtos disponíveis
+              </h3>
             </div>
           </div>
         </div>
-      ) : (
-        "loading..."
-      )}
+      ) : null}
     </Default>
   );
 }

@@ -21,10 +21,20 @@ function ItemCount({ count, setCount, limit }) {
   }
 
   return (
-    <div className="flex border justify-between items-center px-4 py-2 w-24">
-      <button onClick={decrement}>-</button>
+    <div className="flex border justify-between items-center px-4 py-2 w-24 rounded-xl gap-3">
+      <button
+        className="text-gray-900 font-semibold font-inter text-base"
+        onClick={decrement}
+      >
+        -
+      </button>
       <span>{count.toString().padStart(2, " ")}</span>
-      <button onClick={increment}>+</button>
+      <button
+        className="text-gray-900 font-semibold font-inter text-base"
+        onClick={increment}
+      >
+        +
+      </button>
     </div>
   );
 }
