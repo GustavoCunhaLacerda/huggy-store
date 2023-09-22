@@ -196,11 +196,15 @@ function _ProductForm({ state, dispatch, brands }) {
           name="select"
           className="p-2 border-gray-900 border rounded-xl"
           value={state.brand || ""}
-          onChange={(e) => dispatch({ brand: e.target.value })}
+          onChange={(e) => {
+            console.log(e.target.value);
+            dispatch({ brand: e.target.value });
+          }}
         >
+          <option value={null}>Nenhum</option>
           {brands.map((brand) => {
             return (
-              <option key={brand.id} value={brand.id}>
+              <option key={brand.id} value={brand.name}>
                 {brand.name}
               </option>
             );

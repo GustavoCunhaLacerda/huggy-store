@@ -9,7 +9,10 @@ function Cart() {
   return (
     <Default>
       <div className="flex h-full w-full flex-col">
-        <div className="flex w-full items-center">
+        <div className="flex justify-center">
+          <h1>Meu Carrinho</h1>
+        </div>
+        {/* <div className="flex w-full items-center">
           <button
             onClick={cartContext.clear}
             className="border border-red-600 w-36 p-3 m-5 text-red-600 hover:bg-red-600/25"
@@ -28,7 +31,7 @@ function Cart() {
             </span>
           </div>
         </div>
-        <ItemListContainer />
+        <ItemListContainer /> */}
       </div>
     </Default>
   );

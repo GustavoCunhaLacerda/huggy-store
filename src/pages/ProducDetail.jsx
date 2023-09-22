@@ -19,7 +19,7 @@ function ProductDetail() {
       const res = await api.product.index(params.id);
       setProduct(res);
     }
-    fetch();
+    fetch().then(() => console.log(product));
   }, [params.id]);
 
   function addToCart() {
@@ -34,7 +34,7 @@ function ProductDetail() {
           <div className="flex gap-12 items-center">
             {/* IMG */}
             <img
-              className="h-72 w-72 bg-white rounded-xl object-contain"
+              className="h-72 w-72 bg-white rounded-xl object-contain p-6 border border-gray-200 shadow-md"
               src={product.image}
             />
             <div className="flex flex-col gap-4">
