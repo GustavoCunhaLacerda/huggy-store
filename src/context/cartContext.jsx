@@ -30,6 +30,12 @@ export function CartProvider({ children }) {
     setCartItems([]);
   }
 
+  function price() {
+    return cartItems.reduce((acc, curr) => {
+      return acc + curr.item.price * curr.quantity;
+    }, 0);
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -38,6 +44,7 @@ export function CartProvider({ children }) {
         removeItem,
         clear,
         isInCart,
+        price,
       }}
     >
       {children}
