@@ -5,13 +5,13 @@ import Cart from "../pages/Cart";
 import Products from "../pages/Products";
 import ProductDetail from "../pages/ProducDetail";
 import Admin from "../pages/Admin";
-import Checkout from "../pages/Checkout";
+// import Checkout from "../pages/Checkout";
 
 const router = createBrowserRouter([
-  {
-    path: "/checkout",
-    element: <Checkout />,
-  },
+  // {
+  //   path: "/checkout",
+  //   element: <Checkout />,
+  // },
   {
     path: "/admin",
     element: <Admin />,
