@@ -15,11 +15,11 @@ function ProductDetail() {
 
   useEffect(() => {
     async function fetch() {
-      console.log(params.id);
       const res = await api.product.index(params.id);
       setProduct(res);
     }
-    fetch().then(() => console.log(product));
+
+    fetch();
   }, [params.id]);
 
   function addToCart() {

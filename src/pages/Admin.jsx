@@ -2,6 +2,8 @@ import { useEffect, useReducer, useState } from "react";
 import api from "../api";
 import ProductForm from "../components/Pages/Admin/ProductForm";
 import BrandForm from "../components/Pages/Admin/BrandForm";
+import ColorForm from "../components/Pages/Admin/ColorForm";
+import SizeForm from "../components/Pages/Admin/SizeForm";
 
 function Admin() {
   const initialFormState = {};
@@ -10,7 +12,6 @@ function Admin() {
   const [docs, setDocs] = useState([]);
 
   async function handleRemoveDoc(id) {
-    console.log({ id });
     switch (docForm) {
       case "BRAND":
         await api.brand.delete(id);
@@ -18,11 +19,33 @@ function Admin() {
       case "PRODUCT":
         await api.product.delete(id);
         break;
+      case "SIZE":
+        await api.size.delete(id);
+        break;
+      case "COLOR":
+        await api.color.delete(id);
+        break;
       default:
         break;
     }
 
     setReload(true);
+  }
+
+  function form() {
+    switch (docForm) {
+      case "BRAND":
+        return <BrandForm />;
+      case "PRODUCT":
+        return <ProductForm />;
+      case "SIZE":
+        return <SizeForm />;
+      case "COLOR":
+        return <ColorForm />;
+
+      default:
+        break;
+    }
   }
 
   useEffect(() => {
@@ -35,6 +58,12 @@ function Admin() {
           break;
         case "PRODUCT":
           docsData = await api.product.list();
+          break;
+        case "COLOR":
+          docsData = await api.color.list();
+          break;
+        case "SIZE":
+          docsData = await api.size.list();
           break;
         default:
           break;
@@ -68,15 +97,13 @@ function Admin() {
             Produto
           </option>
           <option value="BRAND">Marca</option>
+          <option value="COLOR">Cor</option>
+          <option value="SIZE">Tamanho</option>
         </select>
       </div>
       <div className="w-full flex justify-center">
         <div className="w-96 border-2 bg-gray-50 p-5 mt-4 gap-5 flex flex-col rounded-xl h-full">
-          {docForm === "PRODUCT" ? (
-            <ProductForm />
-          ) : docForm === "BRAND" ? (
-            <BrandForm />
-          ) : null}
+          {form()}
           <button
             type="submit"
             form="admin-form"

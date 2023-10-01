@@ -1,3 +1,4 @@
+// Não é mais usado
 export default function fakeApiCall(dataToSend) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

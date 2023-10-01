@@ -6,19 +6,19 @@ export default {
     try {
       const firestore = getFirestore(app);
   
-      const brandCollection = collection(firestore, "brand");
-      const brandSnapsShot = await getDocs(brandCollection);
+      const sizeCollection = collection(firestore, "size");
+      const sizeSnapsShot = await getDocs(sizeCollection);
   
-      return brandSnapsShot.docs.map((doc) => ({ id: doc.id, ...doc.data()}));
+      return sizeSnapsShot.docs.map((doc) => ({ id: doc.id, ...doc.data()}));
     } catch (error) {
       console.log(error);
     }
   },
 
-  async post(formBrand) {
+  async post(formSize) {
     try {
       const firestore = getFirestore(app);
-      await addDoc(collection(firestore, "brand"), formBrand);
+      await addDoc(collection(firestore, "size"), formSize);
     } catch (error) {
       console.log(error);
     }
@@ -27,8 +27,8 @@ export default {
   async delete(id) {
     try {
       const firestore = getFirestore(app);
-      const brandRef = doc(firestore, "brand", id);
-      await deleteDoc(brandRef);
+      const sizeRef = doc(firestore, "size", id);
+      await deleteDoc(sizeRef);
     } catch (error) {
       console.log(error);
     }

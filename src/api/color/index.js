@@ -6,19 +6,19 @@ export default {
     try {
       const firestore = getFirestore(app);
   
-      const brandCollection = collection(firestore, "brand");
-      const brandSnapsShot = await getDocs(brandCollection);
+      const colorCollection = collection(firestore, "color");
+      const colorSnapsShot = await getDocs(colorCollection);
   
-      return brandSnapsShot.docs.map((doc) => ({ id: doc.id, ...doc.data()}));
+      return colorSnapsShot.docs.map((doc) => ({ id: doc.id, ...doc.data()}));
     } catch (error) {
       console.log(error);
     }
   },
 
-  async post(formBrand) {
+  async post(formColor) {
     try {
       const firestore = getFirestore(app);
-      await addDoc(collection(firestore, "brand"), formBrand);
+      await addDoc(collection(firestore, "color"), formColor);
     } catch (error) {
       console.log(error);
     }
@@ -27,8 +27,8 @@ export default {
   async delete(id) {
     try {
       const firestore = getFirestore(app);
-      const brandRef = doc(firestore, "brand", id);
-      await deleteDoc(brandRef);
+      const colorRef = doc(firestore, "color", id);
+      await deleteDoc(colorRef);
     } catch (error) {
       console.log(error);
     }

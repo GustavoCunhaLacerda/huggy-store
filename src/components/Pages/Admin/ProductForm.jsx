@@ -38,14 +38,22 @@ function ProductForm() {
   };
 
   const [brands, setBrands] = useState([]);
+  const [colors, setColors] = useState([]);
+  const [sizes, setSizes] = useState([]);
 
   useEffect(() => {
-    async function fetchBrands() {
+    async function fetchOptions() {
       const availableBrands = await api.brand.list();
       setBrands(availableBrands);
+
+      const availableSizes = await api.size.list();
+      setSizes(availableSizes);
+
+      const availableColors = await api.color.list();
+      setColors(availableColors);
     }
 
-    fetchBrands();
+    fetchOptions();
   }, []);
 
   return (
@@ -104,14 +112,44 @@ function ProductForm() {
       </div>
       <div>
         <label>Cor</label>
-        <input type="text" {...register("color")} />
+        <select
+          name="select"
+          className="p-2 border-gray-900 border rounded-xl"
+          {...register("color")}
+        >
+          <option value={null}>Nenhum</option>
+          {colors.map((color) => {
+            return (
+              <option
+                key={color.id}
+                value={color.hexadecimal}
+                style={{ backgroundColor: color.hexadecimal }}
+              >
+                {color.hexadecimal}
+              </option>
+            );
+          })}
+        </select>
         <p className="text-xs font-medium text-red-600">
           {errors.color?.message}
         </p>
       </div>
       <div>
         <label>Tamano</label>
-        <input type="text" {...register("size")} />
+        <select
+          name="select"
+          className="p-2 border-gray-900 border rounded-xl"
+          {...register("size")}
+        >
+          <option value={null}>Nenhum</option>
+          {sizes.map((sizes) => {
+            return (
+              <option key={sizes.id} value={sizes.name}>
+                {sizes.name}
+              </option>
+            );
+          })}
+        </select>
         <p className="text-xs font-medium text-red-600">
           {errors.size?.message}
         </p>

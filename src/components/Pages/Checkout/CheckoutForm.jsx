@@ -34,12 +34,20 @@ function CheckoutForm({ setOrder }) {
 
   const onSubmit = async (data) => {
     try {
+      for (const item of cartContext.cartItems) {
+        await api.product.updateStockCount(
+          item.item.id,
+          item.item.stockCount - item.quantity
+        );
+      }
+
       const checkoutFormData = {
         buyer: data,
         items: cartContext.cartItems,
         data: dayjs().toString(),
         total: cartContext.price(),
       };
+
       const orderId = await api.checkout.post(checkoutFormData);
       const order = await api.checkout.index(orderId);
       setOrder(order);

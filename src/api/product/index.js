@@ -1,34 +1,55 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { app } from "../../service/firebase";
 
 
 export default {
   async list() {
-    const firestore = getFirestore(app);
-
-    const productCollection = collection(firestore, "product");
-    const productSnapsShot = await getDocs(productCollection);
-
-    return productSnapsShot.docs.map((doc) => ({ id: doc.id, ...doc.data()}));
+    try {
+      const firestore = getFirestore(app);
+  
+      const productCollection = collection(firestore, "product");
+      const productSnapsShot = await getDocs(productCollection);
+  
+      return productSnapsShot.docs.map((doc) => ({ id: doc.id, ...doc.data()}));
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   async index(id) {
-    const firestore = getFirestore(app);
-
-    const docRef = doc(firestore, "product", id);
-    const docRes = await getDoc(docRef);
-
-    return { id: docRes.id, ...docRes.data()};
+    try {
+      const firestore = getFirestore(app);
+  
+      const docRef = doc(firestore, "product", id);
+      const docRes = await getDoc(docRef);
+  
+      return { id: docRes.id, ...docRes.data()};
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   async post(productForm) {
-    const imageUrl = await this.uploadImage(productForm.image)
-    
-    const firestore = getFirestore(app);
-    const docRef = await addDoc(collection(firestore, "product"), { ...productForm, image: imageUrl });
-
-    console.log(docRef.id);
+    try {
+      const imageUrl = await this.uploadImage(productForm.image)
+      
+      const firestore = getFirestore(app);
+      await addDoc(collection(firestore, "product"), { ...productForm, image: imageUrl });
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  
+  async updateStockCount(id,  newStockCount) {
+    try {
+      const firestore = getFirestore(app);
+  
+      const docRef = doc(firestore, "product", id);
+      await updateDoc(docRef, {stockCount: newStockCount})
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   async delete(id) {
