@@ -1,12 +1,12 @@
 <h1 align="center">
-	<img alt="Logo" src="https://imgur.com/ef4f9d0b-3a1e-4898-924f-46cc8108e13fg" width="200px" />
+<img alt="Logo" src="https://i.imgur.com/Oxu0kip.png" width="200px" />
 </h1>
 
 <h3 align="center">
   Huggy
 </h3>
 
-<p align="center">Short slogan</p>
+<p align="center">Abraçando sonhos, um ursinho de pelúcia de cada vez.</p>
 
 <p align="center">
 <!--   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/EliasGcf/readme-template">
@@ -36,20 +36,20 @@
   <a href="#-license">License</a> -->
 </p>
 
-## 👨🏻‍💻 About the project
+## 👨🏻‍💻 sobre o projeto
 
-- <p style="color: red;">Brief explanation about the project</p>
+- <p style="color: red;">Sobre o projeto</p>
 
 To see the **api**, click here: [PROJECT_NAME Rest API](https://github/eliasgcf/readme-template)</br>
 To see the **mobile client**, click here: [PROJECT_NAME Mobile](https://github/eliasgcf/readme-template)
 
-## 🚀 Technologies
+## 🚀 Tecnologias
 
 Technologies that I used to develop this web client
 
-## 💻 Getting started
+## 💻 Começando
 
-### Requirements
+### Requisitos
 
 - Have this application's [API](https://github.com/EliasGcf/gobarber-api) running
 
@@ -71,39 +71,5 @@ $ yarn
 $ yarn start
 ```
 
-## 🤔 How to contribute
 
-**Make a fork of this repository**
-
-```bash
-# Fork using GitHub official command line
-# If you don't have the GitHub CLI, use the web site to do that.
-
-$ gh repo fork EliasGcf/NOME_DO_REPO
-```
-
-**Follow the steps below**
-
-```bash
-# Clone your fork
-$ git clone your-fork-url && cd NOME_DO_REPO
-
-# Create a branch with your feature
-$ git checkout -b my-feature
-
-# Make the commit with your changes
-$ git commit -m 'feat: My new feature'
-
-# Send the code to your remote branch
-$ git push origin my-feature
-```
-
-After your pull request is merged, you can delete your branch
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Made with 💜 &nbsp;by Elias Gabriel 👋 &nbsp;[See my linkedin](https://www.linkedin.com/in/eliasgcf/)
+Feito com 💜 &nbsp;por Gustavo Lacerda.
