@@ -90,7 +90,7 @@ function ProductForm() {
           className="p-2 border-gray-900 border rounded-xl"
           {...register("brand")}
         >
-          <option value={null}>Nenhum</option>
+          <option value={""}>Nenhum</option>
           {brands.map((brand) => {
             return (
               <option key={brand.id} value={brand.name}>
@@ -117,15 +117,11 @@ function ProductForm() {
           className="p-2 border-gray-900 border rounded-xl"
           {...register("color")}
         >
-          <option value={null}>Nenhum</option>
+          <option value={""}>Nenhum</option>
           {colors.map((color) => {
             return (
-              <option
-                key={color.id}
-                value={color.hexadecimal}
-                style={{ backgroundColor: color.hexadecimal }}
-              >
-                {color.hexadecimal}
+              <option key={color.id} value={color.label}>
+                {color.label}
               </option>
             );
           })}
@@ -141,11 +137,11 @@ function ProductForm() {
           className="p-2 border-gray-900 border rounded-xl"
           {...register("size")}
         >
-          <option value={null}>Nenhum</option>
+          <option value={""}>Nenhum</option>
           {sizes.map((sizes) => {
             return (
-              <option key={sizes.id} value={sizes.name}>
-                {sizes.name}
+              <option key={sizes.id} value={sizes.label}>
+                {sizes.label}
               </option>
             );
           })}

@@ -23,6 +23,9 @@ function ProductDetail() {
   }, [params.id]);
 
   function addToCart() {
+    if (count === 0) {
+      return;
+    }
     cartContext.addItem(product, count);
     navigate("/cart");
   }
